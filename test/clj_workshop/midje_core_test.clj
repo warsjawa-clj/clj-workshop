@@ -1,6 +1,6 @@
 (ns clj-workshop.midje-core-test
   (:require [midje.sweet :refer :all]
-            [clj-workshop.core :refer :all]))
+            [clj-workshop.test-fun :refer :all]))
 
 (facts "about crazy-fun"
   (fact (crazy-fun 1 2) => 4)

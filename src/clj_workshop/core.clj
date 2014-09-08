@@ -12,19 +12,42 @@
 
 x
 
-(class x)
+(type x)
 
-(def y 1.0)
-(class y)
+(type 1.1)
+
+(type 5N)
+
+(type "warsjawa")
+
+(type #"[a-z]")
+
+(type true)
+
+(type nil)
+
+(nil? nil)
+
+(= false nil)
 
 (def a-keyword :key)
-(class :key)
+(type :key)
+
+(type 'str)
 
 ;; Data types
+
+(def l '(1 2 3))
+
+l
+
+(type l)
 
 (def v [1 2 3])
 
 v
+
+(type v)
 
 (v 0)
 
@@ -50,6 +73,10 @@ m
 
 (def s #{:cat :dog :bird})
 
+s
+
+(type s)
+
 (contains? s :cat)
 
 (s :cat)
@@ -60,14 +87,33 @@ m
 
 ;; Functions
 
-(defn f [] (+ 1 2))
+(type +)
 
-(f)
+(clojure.repl/source +)
 
-(defn crazy-fun [x y]
-  (if (nil? x) (throw (java.lang.RuntimeException. "fail"))
-    (* y 2)))
+(defn f
+  "some fun"
+  [x]
+  (inc x))
 
-(crazy-fun 1 2)
+(f 2)
 
-;; (crazy-fun nil 2)
+(clojure.repl/doc f)
+
+(map f [1 2 3])
+
+(map (fn [x] (inc x)) [1 2 3])
+
+(map #(inc %) [1 2 3])
+
+(defn half
+  ([]  1/2)
+  ([x] (/ x 2)))
+
+(half)
+
+(half 5)
+
+(type (half 5))
+
+(double (half 5))

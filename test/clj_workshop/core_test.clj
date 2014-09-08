@@ -1,6 +1,6 @@
 (ns clj-workshop.core-test
   (:require [clojure.test :refer :all]
-            [clj-workshop.core :refer :all]))
+            [clj-workshop.test-fun :refer :all]))
 
 (deftest crazy-fun-test
   (testing "crazy-fun"
