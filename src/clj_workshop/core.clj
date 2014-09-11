@@ -43,6 +43,12 @@ l
 
 (type l)
 
+(def l '(1 2 3))
+
+l
+
+(type l)
+
 (def v [1 2 3])
 
 v
