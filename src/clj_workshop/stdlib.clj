@@ -84,6 +84,7 @@
                               (take 100
                                     (iterate inc 0))))))
 
+
 (->> 0
   (iterate inc)
   (take 1000)
@@ -98,12 +99,24 @@
 
 (- (/ (+ 3 c) 2) 1)
 
+; equivalents
+(- (/ (+ 3 c) 2) 1)
 (-> c (+ 3) (/ 2) (- 1))
 
+(- 1 (/ 2 (+ 3 c)))
+(->> c (+ 3) (/ 2) (- 1))
+
+; java interop
+
+(new java.util.ArrayList 100)
+(java.util.ArrayList. 100)
+
 (doto
-  (new java.util.HashMap)
+  (java.util.HashMap.)
   (.put :a 1)
   (.put :b 2))
 
 (or (System/getProperty "x") "default")
 
+; .. == ->
+(.. System getProperties (get "os.name"))
