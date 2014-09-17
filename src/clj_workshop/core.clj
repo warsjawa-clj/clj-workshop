@@ -2,7 +2,7 @@
 
 (+ 1 2)
 
-(println "Hello world!")
+(println "Hello world!") ; check console Luke
 
 (str "Hello world!")
 
@@ -37,18 +37,14 @@ x
 
 ;; Data types
 
+; Lists
 (def l '(1 2 3))
 
 l
 
 (type l)
 
-(def l '(1 2 3))
-
-l
-
-(type l)
-
+; Vectors
 (def v [1 2 3])
 
 v
@@ -59,6 +55,7 @@ v
 
 (get v 0)
 
+; Maps
 (def m {:a 1 :b 2})
 
 m
@@ -71,12 +68,15 @@ m
 
 (get m :a)
 
+; Nested Maps
+
 (def nested-map {:version {:minor 1 :major 6}})
 
 (get-in nested-map [:version :major])
 
 (zipmap [:foo :bar :baz] [1 2 3])
 
+; Sets
 (def s #{:cat :dog :bird})
 
 s
@@ -110,6 +110,7 @@ s
 
 (map (fn [x] (inc x)) [1 2 3])
 
+; Closures
 (map #(inc %) [1 2 3])
 
 (defn half
@@ -123,3 +124,7 @@ s
 (type (half 5))
 
 (double (half 5))
+
+; lazy evaluation
+(iterate inc 0)
+(def large-seq (lazy-seq (iterate inc 0)))
