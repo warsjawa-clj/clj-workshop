@@ -1,6 +1,6 @@
 # clj-workshop
 
-Source code for Clojure for the brave workshop @ 2014 [Warsjawa](http://warsjawa.pl/)
+Source code for Clojure for the brave workshop @[Warsjawa](http://warsjawa.pl/) 2014
 
 ## License
 
