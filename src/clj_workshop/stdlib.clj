@@ -61,13 +61,17 @@
   "" "Maybe this"
   :else "Default case")
 
-(when x
-  (println "x is true")
-  (println "x is still true"))
+(let [x true]
 
-(if x
-  (do (println "x is true")
-      (println "x is still true")))
+  (when x
+    (println "x is true")
+    (println "x is still true"))
+
+  (if x
+    (do (println "x is true")
+        (println "x is still true")))
+
+  )
 
 (def x 2)
 

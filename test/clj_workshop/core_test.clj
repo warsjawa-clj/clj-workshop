@@ -6,3 +6,5 @@
   (testing "crazy-fun"
     (is (= 4 (crazy-fun 1 2)))
     (is (thrown? java.lang.RuntimeException (crazy-fun nil 2)))))
+
+(run-tests)
