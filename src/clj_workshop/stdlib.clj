@@ -10,33 +10,34 @@
 
 (map + [1 1] [2 2] [3 3])
 
+; lazy evaluation
+(iterate inc 0)
+
+(def large-seq (lazy-seq (iterate inc 0)))
+
 (range 10)
 
 (take 5 (repeat 10))
 
 (take 45 (cycle [1 2 3]))
 
+; filtering
 (take-while pos? [3 2 1 0 -1 -2 10])
 
-(filter pos? [1 5 -4 -7 3 0])
+(filter even? (iterate inc 0))
 
 (remove nil? [1 nil :apple])
+
+(partition 2 (iterate inc 0))
+
+(partition 2 1 (iterate inc 0))
+
+; construction
+(zipmap [:foo :bar :baz] [1 2 3])
 
 (into {} [[:foo 1] [:bar 2] [:baz 3]])
 
 (into [] (range 10))
-
-(first [1 2 3])
-
-(rest [1 2 3])
-
-(empty? [])
-
-(empty? nil)
-
-(seq [])
-
-(seq nil)
 
 ;; flow
 
@@ -45,55 +46,55 @@
     "true"
     "false"))
 
-(f 0)
+(defn f [z]
+  (when x
+    (println "x is true")
+    (println "x is still true")))
 
-(f "")
+(f 1)
 
-(f {})
+(defn f [y]
+  (cond
+    (nil? y) "nil"
+    (false? y) "false"
+    (empty? y) "empty"
+    :else "default"))
 
 (f nil)
 
-(f false)
+(f [])
 
-(cond
-  nil "Not going to return this"
-  false "Nope not going to return this either"
-  "" "Maybe this"
-  :else "Default case")
+(f [1 2 3])
 
-(let [x true]
-
-  (when x
-    (println "x is true")
-    (println "x is still true"))
-
-  (if x
-    (do (println "x is true")
-        (println "x is still true")))
-
-  )
+; scope
 
 (def x 2)
 
 (let [x 3]
   (+ x 3))
 
+x
+
+(let [x 3]
+  (def x 4))
+
+x
+
 ;; useful constructs
 
 (take 5
-      (map (fn [pair]
-             (+ (first pair) (second pair)))
-           (partition 2 1
-                      (filter even?
-                              (take 100
-                                    (iterate inc 0))))))
-
+  (map (fn [pair]
+         (+ (first pair) (second pair)))
+    (partition 2
+      (filter even?
+        (take 100
+          (iterate inc 0))))))
 
 (->> 0
   (iterate inc)
   (take 1000)
   (filter even?)
-  (partition 2 1)
+  (partition 2)
   (map (fn [pair]
         (+ (first pair) (second pair))))
   (take 5))
@@ -101,9 +102,6 @@
 
 (def c 5)
 
-(- (/ (+ 3 c) 2) 1)
-
-; equivalents
 (- (/ (+ 3 c) 2) 1)
 (-> c (+ 3) (/ 2) (- 1))
 
@@ -115,12 +113,18 @@
 (new java.util.ArrayList 100)
 (java.util.ArrayList. 100)
 
-(doto
-  (java.util.HashMap.)
-  (.put :a 1)
-  (.put :b 2))
+(def m
+  (doto
+    (java.util.HashMap.)
+    (.put :a 1)
+    (.put :b 2)))
 
-(or (System/getProperty "x") "default")
+m
 
-; .. == ->
-(.. System getProperties (get "os.name"))
+(get m :b)
+
+;;(m :b)
+
+(System/getProperty "java.home")
+
+(.. System getProperties (get "java.home"))
