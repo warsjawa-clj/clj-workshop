@@ -16,7 +16,9 @@ x
 
 (type 1.1)
 
-(type 5N)
+(type 0.00005M)
+
+(type 1000000000000000000000N)
 
 (type 1/2)
 
@@ -37,6 +39,8 @@ x
 (type :key)
 
 (type 'str)
+
+(type 'fn*?!+*)
 
 ;; Data types
 
@@ -118,6 +122,6 @@ s
 (clojure.repl/doc +)
 
 ; Closures
-(fn [x] (inc x))
+((fn [x] (inc x)) 2)
 
-(map #(inc %) [1 2 3])
+(#(inc %) 2)

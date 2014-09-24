@@ -13,3 +13,10 @@
 (hello {:first-name "Luke" :last-name "Skywalker"})
 
 (hello {})
+
+(hello '(:first-name "Luke" :last-name "Skywalker"))
+
+(defn hello-wrapper [& args]
+  (hello args))
+
+(hello-wrapper :first-name "Luke")
