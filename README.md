@@ -1,10 +1,6 @@
 # clj-workshop
 
-A Clojure library designed to ... well, that part is up to you.
-
-## Usage
-
-
+Source code for Clojure for the brave workshop @[Warsjawa](http://warsjawa.pl/) 2014
 
 ## License
 

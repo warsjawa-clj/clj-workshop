@@ -16,7 +16,15 @@ x
 
 (type 1.1)
 
-(type 5N)
+(type 0.00005M)
+
+(type 1000000000000000000000N)
+
+(type 1/2)
+
+(str 1/2)
+
+(str (double 1/2))
 
 (type "warsjawa")
 
@@ -28,12 +36,11 @@ x
 
 (nil? nil)
 
-(= false nil)
-
-(def a-keyword :key)
 (type :key)
 
 (type 'str)
+
+(type 'fn*?!+*)
 
 ;; Data types
 
@@ -42,31 +49,35 @@ x
 
 l
 
-(type l)
+(conj l 0)
+
+l
+
+(first l)
+
+(rest l)
+
+(last l)
 
 ; Vectors
 (def v [1 2 3])
 
 v
 
-(type v)
+(get v 0)
 
 (v 0)
-
-(get v 0)
 
 ; Maps
 (def m {:a 1 :b 2})
 
 m
 
-(conj m {:c 3})
+(get m :a)
 
-m
+(m :a)
 
 (:a m)
-
-(get m :a)
 
 ; Nested Maps
 
@@ -74,14 +85,10 @@ m
 
 (get-in nested-map [:version :major])
 
-(zipmap [:foo :bar :baz] [1 2 3])
-
 ; Sets
 (def s #{:cat :dog :bird})
 
 s
-
-(type s)
 
 (contains? s :cat)
 
@@ -89,13 +96,7 @@ s
 
 (s :cow)
 
-(true? (s :cow))
-
 ;; Functions
-
-(type +)
-
-(clojure.repl/source +)
 
 (defn f
   "some fun"
@@ -106,12 +107,7 @@ s
 
 (clojure.repl/doc f)
 
-(map f [1 2 3])
-
-(map (fn [x] (inc x)) [1 2 3])
-
-; Closures
-(map #(inc %) [1 2 3])
+(type f)
 
 (defn half
   ([]  1/2)
@@ -119,12 +115,13 @@ s
 
 (half)
 
-(half 5)
+(half 4)
 
-(type (half 5))
+(clojure.repl/source +)
 
-(double (half 5))
+(clojure.repl/doc +)
 
-; lazy evaluation
-(iterate inc 0)
-(def large-seq (lazy-seq (iterate inc 0)))
+; Closures
+((fn [x] (inc x)) 2)
+
+(#(inc %) 2)
