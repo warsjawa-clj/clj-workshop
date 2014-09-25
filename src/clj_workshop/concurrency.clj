@@ -1,5 +1,16 @@
-;; atoms
+;; concurrency
+(def defered-obj (delay (println "I'm out") (* 8 2)))
+(deref defered-obj)
 
+(def normal-future (future (println "I'm out") (* 8 2)))
+(deref normal-future)
+
+(def box (promise))
+(deref box) ; hangs repl
+
+(deliver box :misterious-content)
+
+;; atoms
 
 ; example 1
 (def apple-price (atom nil))
@@ -42,6 +53,17 @@
 ;; refs - similar to atoms, but they also participate in coordinated updates
 
 ; example 1
+(def x (ref 0))
+(def y (ref 0))
+(dosync
+   (ref-set x 1)
+   (ref-set y 2))
+
+(dosync
+   (alter x + 2)
+   (alter y inc))
+
+; example 1
 (def active-orders (ref #{2 3 4}))
 
 (def cancelled-orders (ref #{1}))
@@ -68,7 +90,11 @@
 (dothreads use-id :threads 10 :times 10)
 @used-id
 
-; switch commute to alter
+; switch commute to alter - performance gains
 
+; Finally, if you want to read a value from one ref and use it to update another,
+; use ensure instead of deref to perform a strongly consistent read
+(dosync
+  (alter x + (ensure y)))
 
 ;; agents
